@@ -20,6 +20,9 @@
             <li><a ui-sref="members">Members</a></li>
             <li><a ui-sref="profile">Profile</a></li>
         </ul>
+        <div class="logout" ng-if="showLogout">
+            <logout></logout>
+        </div>
       </div>
       <div class="row">
         <ui-view></ui-view>
@@ -37,6 +40,7 @@
     <script type="text/javascript" src="js/components/home.directive.js"></script>
     <script type="text/javascript" src="js/components/login.directive.js"></script>
     <script type="text/javascript" src="js/components/register.directive.js"></script>
+    <script type="text/javascript" src="js/components/logout.directive.js"></script>
     <script type="text/javascript" src="js/components/member.directive.js"></script>
     <script type="text/javascript" src="js/components/member.convo.directive.js"></script>
     <script type="text/javascript" src="js/components/member.info.directive.js"></script>
@@ -48,8 +52,6 @@
     <script type="text/javascript" src="js/components/profile.preview.directive.js"></script>
     <script type="text/javascript" src="js/services/member.service.js"></script>
     <script type="text/javascript" src="js/services/auth.service.js"></script>
-
-
   </body>
 
 

@@ -5,6 +5,7 @@ angular
         'ngStorage'
         ])
     .config(config)
+    .run(run)
 
 function config($stateProvider, $urlRouterProvider, $httpProvider) {
 
@@ -46,16 +47,22 @@ function config($stateProvider, $urlRouterProvider, $httpProvider) {
             url: '/profile',
             template: '<profile class="col-md-8 col-md-offset-2 text-center"></profile>'
         })
+}
 
-        $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
-        return {
-           'request': function (config) {
-               if (!$localStorage.token) {
-                 $location.path('/login');
-               }
-               return config;
-           }
-       };
-      }]);
-
-};
+function run($rootScope, $state, $localStorage){
+    $rootScope.$on( "$stateChangeStart", function(event, toState) {
+      if ( !$localStorage.token ) {
+        $rootScope.showLogout = false;
+        if ( toState.name == "members" || toState.name == "profile") {
+            event.preventDefault();
+            $state.go( "login" );
+        }
+      } else if ( $localStorage.token ) {
+        $rootScope.showLogout = true;
+        if ( toState.name == "login" || toState.name == "register" ) {
+          event.preventDefault();
+          $state.go( "members" );
+        }
+      }
+    });
+}

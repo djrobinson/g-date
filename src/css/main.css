@@ -24,3 +24,9 @@ profile {
   height: 95%;
   overflow: scroll;
 }
+
+.logout {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+}

@@ -6,7 +6,7 @@
     .directive('login', login)
     .controller('loginCtrl', loginCtrl)
 
-  loginCtrl.$inject = ['authService', '$scope', '$localStorage'];
+  loginCtrl.$inject = ['authService', '$scope', '$localStorage', '$location'];
 
   function login(){
     var directive = {
@@ -27,22 +27,18 @@
     return directive;
   }
 
-  function loginCtrl(authService, $scope, $localStorage){
+  function loginCtrl(authService, $scope, $localStorage, $location){
     var vm = this;
 
     vm.login = function(){
-
       console.log($scope.login);
       authService.login($scope.login)
       .then(function(res){
         console.log(res);
         $localStorage.token = res.data.token;
         $localStorage.user = res.data.user._id;
-        return res;
+        window.location = "/#/members"
       })
     }
-
-
-
   }
 })();
