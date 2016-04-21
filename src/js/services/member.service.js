@@ -5,9 +5,9 @@
         .module('datingApp')
         .factory('memberService', memberService);
 
-    memberService.$inject = ['$http', 'logger'];
+    memberService.$inject = ['$http', '$log'];
 
-    function memberService($http, logger) {
+    function memberService($http, $log) {
         return {
             getMembers: getMembers,
             createMember: createMember,
@@ -16,17 +16,20 @@
             updateMember: updateMember
         };
 
+        var urlBase = 'https://galvanize-student-apis.herokuapp.com/gdating/';
+
         function getMembers() {
-            return $http.get('/members')
+            return $http.get( 'https://galvanize-student-apis.herokuapp.com/gdating/members' )
                 .then(membersComplete)
                 .catch(membersComplete);
 
             function membersComplete(response) {
-                return response.data.results;
+                console.log(response);
+                return response.data.data;
             }
 
             function membersFailed(error) {
-                logger.error('XHR Failed for members.' + error.data);
+                $log.error('XHR Failed for members.' + error.data);
             }
         }
 
@@ -40,7 +43,7 @@
             }
 
             function membersFailed(error) {
-                logger.error('XHR Failed for members.' + error.data);
+                $log.error('XHR Failed for members.' + error.data);
             }
         }
 
@@ -54,7 +57,7 @@
             }
 
             function membersFailed(error) {
-                logger.error('XHR Failed for members.' + error.data);
+                $log.error('XHR Failed for members.' + error.data);
             }
         }
 
@@ -68,7 +71,7 @@
             }
 
             function membersFailed(error) {
-                logger.error('XHR Failed for members.' + error.data);
+                $log.error('XHR Failed for members.' + error.data);
             }
         }
 
@@ -82,7 +85,7 @@
             }
 
             function membersFailed(error) {
-                logger.error('XHR Failed for members.' + error.data);
+                $log.error('XHR Failed for members.' + error.data);
             }
         }
     }

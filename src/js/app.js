@@ -30,7 +30,7 @@ function config($stateProvider, $urlRouterProvider) {
             url: '/members',
             views: {
                 '': {
-                    template: '<div class="row text-center"><div class="col-sm-6"><div ui-view="all"></div></div><div class="col-sm-6"><div ui-view="search"></div></div></div>'
+                    template: '<div class="row text-center"><div class="col-sm-6"><members-all></members-all></div></div><div class="col-sm-6"><members-search></members-search></div></div>'
                     },
                 'all@members': {
                     template: '<members-all></members-all>'
@@ -43,17 +43,7 @@ function config($stateProvider, $urlRouterProvider) {
 
         .state('member', {
             url: '/member/:member_id',
-            views: {
-                '': {
-                    template: '<div class="row text-center"><div class="col-sm-6"><div ui-view="conversations"></div></div><div class="col-sm-6"><div ui-view="info"></div></div></div>'
-                    },
-                'info@member': {
-                    template: '<member-info></member-info>'
-                },
-                'conversations@member': {
-                    template: '<member-convo></member-convo>'
-                }
-            }
+            template: '<member></member>'
         })
 
         .state('profile', {
