@@ -7,23 +7,51 @@
 
     conversationService.$inject = ['$http', 'logger'];
 
-    function authService($http, logger) {
+    function conversationService($http, logger) {
         return {
             register: register,
             login: login
         };
 
-        function register() {
-            return $http.post('/auth/register')
-                .then(registerComplete)
-                .catch(registerFailed);
+        function getConversations() {
+            return $http.get('/members/:member_id/conversations')
+                .then(conversationsComplete)
+                .catch(conversationsFailed);
 
-            function registerComplete(response) {
+            function conversationsComplete(response) {
                 return response.data.results;
             }
 
-            function registerFailed(error) {
-                logger.error('XHR Failed for register.' + error.data);
+            function conversationsFailed(error) {
+                logger.error('XHR Failed for conversations.' + error.data);
+            }
+        }
+
+        function createConversation() {
+            return $http.post('/members/:member_id/conversations')
+                .then(createConvoComplete)
+                .catch(createConvoFailed);
+
+            function createConvoComplete(response) {
+                return response.data.results;
+            }
+
+            function createConvoFailed(error) {
+                logger.error('XHR Failed for create convo. ' + error.data);
+            }
+        }
+
+        function getConversation() {
+            return $http.get('/members/:member_id/conversations/:recipient_id')
+                .then(getConversationComplete)
+                .catch(getConversationFailed);
+
+            function getConversationComplete(response){
+                return response.data.results;
+            }
+
+            function getConversationFailed(error){
+                logger.error('XHR Failed for get conversation ' + error.data);
             }
         }
     }
