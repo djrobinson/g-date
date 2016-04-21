@@ -9,8 +9,9 @@
 
     function conversationService($http, logger) {
         return {
-            register: register,
-            login: login
+            getConversations: getConversations,
+            createConversation: createConversation,
+            getConversation: getConversation
         };
 
         function getConversations() {
