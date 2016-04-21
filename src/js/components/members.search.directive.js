@@ -8,7 +8,12 @@
   function membersSearch(){
     var directive = {
       restrict: 'EA',
-      template: '<h2>Members Search</h2>'
+      template: `
+                  <div class="col-md-12">
+                    <h2>Members Search</h2>
+                  </div>
+
+                `
     }
     return directive;
   }

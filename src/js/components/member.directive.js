@@ -12,16 +12,15 @@
     var directive = {
       restrict: 'EA',
       template: ` <h2>Member Main</h2>
-                  <p>Here's the members: {{members}}</p>
-                  <member-convo></member-convo>
+                  <p>{{vm.test}}
+                  <p>Here's the members: {{vm.members}}</p>
+                  <input type="text" ng-model="item">
+                  <h4>{{item}}</h4>
+                  <member-convo item="item"></member-convo>
                   <member-info></member-info>
                 `,
       controller: 'memberCtrl',
-      link: function(scope, element, attrs) {
-        scope.$watch('members', function(newVal) {
-            console.log(scope.members);
-        }, true);
-      }
+      controllerAs: 'vm'
     }
     return directive;
   }
@@ -29,11 +28,13 @@
   function memberCtrl($scope, memberService){
     var vm = this;
 
-    return memberService.getMembers()
+    vm.test = "hello";
+    memberService.getMembers()
       .then(function(data){
         console.log(data);
-        $scope.members = data[0].username;
-        return $scope.members;
+        vm.members = data[0].username;
+        return vm.members;
       });
+
   }
 })();

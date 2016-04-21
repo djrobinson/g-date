@@ -18,47 +18,32 @@ function config($stateProvider, $urlRouterProvider) {
 
         .state('register', {
             url: '/register',
-            template: '<register></register>'
+            template: '<register class="col-md-6 col-md-offset-3 text-center"></register>'
         })
 
         .state('login', {
             url: '/login',
-            template: '<login></login>'
+            template: '<login class="col-md-6 col-md-offset-3 text-center"></login>'
         })
 
         .state('members', {
             url: '/members',
-            views: {
-                '': {
-                    template: '<div class="row text-center"><div class="col-sm-6"><members-all></members-all></div></div><div class="col-sm-6"><members-search></members-search></div></div>'
-                    },
-                'all@members': {
-                    template: '<members-all></members-all>'
-                },
-                'search@members': {
-                    template: '<members-search></members-search>'
-                }
-            }
+            template: '<members-all></members-all>'
         })
 
-        .state('member', {
+        .state('members.search', {
+            url: '/search',
+            template: '<members-search></members-search>'
+        })
+
+        .state('members.member', {
             url: '/member/:member_id',
             template: '<member></member>'
         })
 
         .state('profile', {
             url: '/profile',
-            views: {
-                '': {
-                    template: '<div class="row text-center"><div class="col-sm-6"><div ui-view="preview"></div></div><div class="col-sm-6"><div ui-view="edit"></div></div></div>'
-                    },
-                'preview@profile': {
-                    template: '<profile-preview></profile-preview>'
-                },
-                'edit@profile': {
-                    template: '<profile-edit></profile-edit>'
-                }
-            }
+            template: '<profile class="col-md-8 col-md-offset-2 text-center"></profile>'
         });
 
 };

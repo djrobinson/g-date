@@ -10,18 +10,20 @@
   </head>
   <!-- sample angular code -->
   <body>
-    <div
-    <div class="container">
-      <br>
-      <ul class="nav nav-pills">
-          <li><a ui-sref="home">Home</a></li>
-          <li><a ui-sref="login">Login</a></li>
-          <li><a ui-sref="register">Register</a></li>
-          <li><a ui-sref="members">Members</a></li>
-          <li><a ui-sref="member">Member</a></li>
-          <li><a ui-sref="profile">Profile</a></li>
-      </ul>
-    <ui-view></ui-view>
+    <div class="container-fluid">
+      <div class="row">
+        <br>
+        <ul class="nav nav-pills">
+            <li><a ui-sref="home">Home</a></li>
+            <li><a ui-sref="login">Login</a></li>
+            <li><a ui-sref="register">Register</a></li>
+            <li><a ui-sref="members">Members</a></li>
+            <li><a ui-sref="profile">Profile</a></li>
+        </ul>
+      </div>
+      <div class="row">
+        <ui-view></ui-view>
+      </div>
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -38,6 +40,7 @@
     <script type="text/javascript" src="js/components/member.info.directive.js"></script>
     <script type="text/javascript" src="js/components/members.all.directive.js"></script>
     <script type="text/javascript" src="js/components/members.search.directive.js"></script>
+    <script type="text/javascript" src="js/components/profile.directive.js"></script>
     <script type="text/javascript" src="js/components/profile.edit.directive.js"></script>
     <script type="text/javascript" src="js/components/profile.preview.directive.js"></script>
     <script type="text/javascript" src="js/services/member.service.js"></script>

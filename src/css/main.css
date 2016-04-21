@@ -1,1 +1,25 @@
 /* add custom styles */
+
+register {
+  margin-top: 200px;
+  height: 500px;
+  border: solid 1px black;
+}
+
+login {
+  margin-top: 200px;
+  height: 500px;
+  border: solid 1px black;
+}
+
+profile {
+  margin-top: 100px;
+  height: 700px;
+  border: solid 1px black;
+}
+
+.sidebar {
+  position: fixed;
+  background: gray;
+  height: 100%;
+}
