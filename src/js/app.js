@@ -1,11 +1,12 @@
 // app.js
 angular
     .module('datingApp', [
-        'ui.router'
+        'ui.router',
+        'ngStorage'
         ])
     .config(config)
 
-function config($stateProvider, $urlRouterProvider) {
+function config($stateProvider, $urlRouterProvider, $httpProvider) {
 
     $urlRouterProvider.otherwise('/');
 
@@ -44,6 +45,17 @@ function config($stateProvider, $urlRouterProvider) {
         .state('profile', {
             url: '/profile',
             template: '<profile class="col-md-8 col-md-offset-2 text-center"></profile>'
-        });
+        })
+
+        $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
+        return {
+           'request': function (config) {
+               if (!$localStorage.token) {
+                 $location.path('/login');
+               }
+               return config;
+           }
+       };
+      }]);
 
 };
