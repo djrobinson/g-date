@@ -23,6 +23,7 @@
                           last="member.names.lastName">
                         </member-icon>
                       </div>
+                      <button class="btn btn-default" ng-click="vm.iterate()">Next 10</button>
                     </div>
                     <div class="col-md-8 main col-md-offset-4" ui-view></div>
                 `,
@@ -34,12 +35,22 @@
 
   function membersCtrl($scope, memberService){
     var vm = this;
+    var iterator = 0;
+    vm.iterate = function(){
+      iterator++;
+      console.log(iterator);
+      getPage();
+    }
     vm.test = "hello";
-    memberService.getMembers()
-      .then(function(data){
-        console.log(data);
-        vm.members = data;
-        return vm.members;
-      });
+    function getPage(){
+      memberService.getMembers(iterator)
+        .then(function(data){
+          console.log(data);
+          vm.members = data;
+          return vm.members;
+        });
+      }
+
+    getPage();
   }
 })();

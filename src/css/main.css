@@ -21,5 +21,6 @@ profile {
 .sidebar {
   position: fixed;
   background: gray;
-  height: 100%;
+  height: 95%;
+  overflow: scroll;
 }

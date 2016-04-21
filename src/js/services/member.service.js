@@ -18,8 +18,9 @@
 
         var urlBase = 'https://galvanize-student-apis.herokuapp.com/gdating/';
 
-        function getMembers() {
-            return $http.get( 'https://galvanize-student-apis.herokuapp.com/gdating/members' )
+        function getMembers(iterator) {
+            var offset = iterator * 10;
+            return $http.get( 'https://galvanize-student-apis.herokuapp.com/gdating/members?limit=10&offset=' + offset )
                 .then(membersComplete)
                 .catch(membersComplete);
 
