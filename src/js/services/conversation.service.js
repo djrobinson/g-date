@@ -5,9 +5,9 @@
         .module('datingApp')
         .factory('conversationService', conversationService);
 
-    conversationService.$inject = ['$http', 'logger'];
+    conversationService.$inject = ['$http', '$log'];
 
-    function conversationService($http, logger) {
+    function conversationService($http, $log) {
         return {
             getConversations: getConversations,
             createConversation: createConversation,
@@ -24,12 +24,12 @@
             }
 
             function conversationsFailed(error) {
-                logger.error('XHR Failed for conversations.' + error.data);
+                $log.error('XHR Failed for conversations.' + error.data);
             }
         }
 
-        function createConversation() {
-            return $http.post('/members/:member_id/conversations')
+        function createConversation(member_id, input) {
+            return $http.post('https://galvanize-student-apis.herokuapp.com/gdating/members/'+member_id+'/conversations', input)
                 .then(createConvoComplete)
                 .catch(createConvoFailed);
 
@@ -38,11 +38,12 @@
             }
 
             function createConvoFailed(error) {
-                logger.error('XHR Failed for create convo. ' + error.data);
+                $log.error('XHR Failed for create convo. ' + error.data);
             }
         }
 
         function getConversation(sender, recipient) {
+            console.log("Get conversations");
             return $http.get('https://galvanize-student-apis.herokuapp.com/gdating/members/'+sender+'/conversations/'+recipient)
                 .then(getConversationComplete)
                 .catch(getConversationFailed);
@@ -53,7 +54,7 @@
             }
 
             function getConversationFailed(error){
-                logger.error('XHR Failed for get conversation ' + error.data);
+                $log.error('XHR Failed for get conversation ' + error.data);
             }
         }
     }

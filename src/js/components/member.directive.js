@@ -14,7 +14,7 @@
       scope: true,
       template: ` <p> {{vmChild.localUser}} {{vm.selected._id}} </p>
                   <member-info></member-info>
-                  <member-convo></member-convo>
+                  <member-convo sender="vmChild.localUser" recipient="vm.selected._id"></member-convo>
                 `,
       controller: 'memberCtrl',
       controllerAs: 'vmChild'
