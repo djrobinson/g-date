@@ -62,8 +62,8 @@
             }
         }
 
-        function getMember() {
-            return $http.get('/members/:member_id')
+        function getMember(member_id) {
+            return $http.get('https://galvanize-student-apis.herokuapp.com/gdating/members/'+id)
                 .then(membersComplete)
                 .catch(membersComplete);
 

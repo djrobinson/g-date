@@ -11,29 +11,30 @@
   function member(){
     var directive = {
       restrict: 'EA',
+      scope: true,
       template: ` <h2>Member Main</h2>
-                  <p>{{vm.test}}
-                  <p>Here's the members: {{vm.members}}</p>
-                  <input type="text" ng-model="item">
+                  <p>Here's the member: {{vm.selected}}</p>
+                  <input type="text" ng-model="vm.shared">
                   <h4>{{item}}</h4>
                   <member-convo item="item"></member-convo>
                   <member-info></member-info>
                 `,
       controller: 'memberCtrl',
-      controllerAs: 'vm'
+      controllerAs: 'vmChild'
     }
     return directive;
   }
 
   function memberCtrl($scope, memberService){
-    var vm = this;
+    var vmChild = this;
 
-    vm.test = "hello";
+
+    vmChild.test = "hello";
     memberService.getMembers()
       .then(function(data){
         console.log(data);
-        vm.members = data[0].username;
-        return vm.members;
+        vmChild.members = data[0].username;
+        return vmChild.members;
       });
 
   }
