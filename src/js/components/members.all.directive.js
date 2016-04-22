@@ -63,7 +63,12 @@
           return vm.members;
         });
       }
-
     getPage();
+
+    vm.testing = "bliggity blah";
+    vm.memberSearch = function(newMembers){
+      vm.members = newMembers;
+      return vm.members;
+    }
   }
 })();
