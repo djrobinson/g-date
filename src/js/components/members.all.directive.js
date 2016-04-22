@@ -51,7 +51,6 @@
         memberService.getMember(id).then(function(data){
           vm.selected = data;
         })
-
       }
     };
 
@@ -76,6 +75,7 @@
     }
 
     vm.testing = "bliggity blah";
+
     vm.memberSearch = function(newMembers){
       vm.members = newMembers;
       return vm.members;
@@ -95,7 +95,6 @@
           })
           vm.members = retVal;
           return vm.members;
-
         })
 
     }

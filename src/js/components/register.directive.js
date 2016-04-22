@@ -80,6 +80,14 @@
                             <input type="text" ng-model="user.zipcode" class="form-control col-md-10">
                           </div>
                         </div>
+                        <div class="form-group">
+                          <div class="col-md-2">
+                           <h4>Avatar</h4>
+                          </div>
+                          <div class="input-group col-md-9">
+                            <input type="text" ng-model="user.avatar" class="form-control col-md-10">
+                          </div>
+                        </div>
                         <input type="submit" class="btn btn-primary btn-lg" value="Register" />
                       </fieldset>
                      </form>
@@ -98,14 +106,19 @@
       var postObj = {};
 
 
+
       vm.register = function(){
+
+
+
+
         postObj = {
               username: $scope.user.username,
               names: {
                 firstName: $scope.user.firstName,
                 lastName: $scope.user.lastName
               },
-              avatar: "djrblah",
+              avatar: $scope.user.avatar,
               email: $scope.user.email,
               password: $scope.user.password,
               dob: $scope.user.dob,
@@ -132,6 +145,17 @@
                 0
               ]
             }
+
+        navigator.geolocation.getCurrentPosition(showPosition);
+
+        function showPosition(position) {
+            postObj.address.geo.lng = position.coords.longitude;
+            postObj.address.geo.lat = position.coords.latitude;
+            console.log("Latitude: " + position.coords.latitude +
+            "Longitude: " + position.coords.longitude);
+        }
+
+
         authService.register(postObj)
           .then(function(res){
               console.log(res);

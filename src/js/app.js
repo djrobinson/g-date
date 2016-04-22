@@ -35,7 +35,7 @@ function config($stateProvider, $urlRouterProvider, $httpProvider) {
 
         .state('members.search', {
             url: '/search',
-            template: '<members-search></members-search>'
+            template: '<members-search members="vm.members"></members-search>'
         })
 
         .state('members.member', {

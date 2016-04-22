@@ -14,7 +14,10 @@
       scope: true,
       template: `
                   <member-info></member-info>
-                  <member-convo sender="vmChild.localUser" recipient="vm.selected._id"></member-convo>
+                  <member-convo
+                    sender="vmChild.localUser"
+                    recipient="vm.selected._id">
+                  </member-convo>
                 `,
       controller: 'memberCtrl',
       controllerAs: 'vmChild'
@@ -25,7 +28,7 @@
   function memberCtrl($scope, memberService, $localStorage){
     var vmChild = this;
     vmChild.localUser = $localStorage.user;
-    vmChild.test = "hello";
+
     memberService.getMembers()
       .then(function(data){
         vmChild.members = data[0].username;

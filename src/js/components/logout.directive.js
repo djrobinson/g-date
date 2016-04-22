@@ -6,7 +6,7 @@
     .directive('logout', logout)
     .controller('logoutCtrl', logoutCtrl);
 
-  logoutCtrl.$inject = ['authService', '$localStorage', '$scope'];
+  logoutCtrl.$inject = ['$localStorage', '$scope', 'authService'];
 
   function logout(){
     var directive = {
@@ -20,10 +20,8 @@
     return directive;
   }
 
-  function logoutCtrl(authService, $localStorage, $scope){
+  function logoutCtrl($localStorage, $scope, authService){
       var vm = this;
-
-
       vm.logout = function(){
       authService.logout(function () {
                            window.location = "/"

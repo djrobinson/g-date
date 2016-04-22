@@ -30,6 +30,21 @@ profile {
   top: 25px ;
 }
 
-.panel img {
+member-icon .panel img {
+  height: 100%;
+  width: 100%;
   margin: 10px;
+}
+
+member-info .panel img {
+  width: 100%;
+}
+
+.alert-success {
+  width: 70%;
+}
+
+.alert-info {
+  float: right;
+  width: 70%;
 }

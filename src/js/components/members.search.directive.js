@@ -11,7 +11,9 @@
   function membersSearch(){
     var directive = {
       restrict: 'EA',
-      scope: true,
+      scope: {
+        members: '='
+      },
       template: `
                   <div class="col-md-12">
                     <h2>Members Search</h2>
@@ -42,10 +44,12 @@
     var vmSearch = this;
 
     vmSearch.search = function(){
+      console.log($scope.members);
       searchService.search($scope.search)
         .then(function(data){
-          console.log(data);
-          $scope.vm.memberSearch(data.data);
+          $scope.members = data.data;
+          // $scope.$parent.vm.members = data.data;
+          // $scope.vm.memberSearch(data.data);
         })
     }
 
