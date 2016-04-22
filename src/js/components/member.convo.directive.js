@@ -12,7 +12,6 @@
         item: '='
       },
       template: `<h2>Member Convo</h2>
-                  <input type="text" ng-model="item" />
                 `
     }
     return directive;

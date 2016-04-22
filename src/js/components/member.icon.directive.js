@@ -26,7 +26,7 @@
                     <div class="col-md-8">
                       <h4><a ui-sref="members.member({ member_id: id })">{{username}}</a></h4>
                       <h5>{{first}} {{last}}</h5>
-                      <button ng-click="set()">See Details</button>
+                      <button ng-click="vmIcon.run()">See Details</button>
                     </div>
                   </div>
                 `,
@@ -41,7 +41,8 @@
 
     console.log($scope.set());
 
-    vmIcon.run = $scope.set();
-
+    vmIcon.run = function(){
+      $scope.set({id: $scope.id});
+    }
   }
 })();

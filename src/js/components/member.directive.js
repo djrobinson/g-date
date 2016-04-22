@@ -14,8 +14,6 @@
       scope: true,
       template: ` <h2>Member Main</h2>
                   <p>Here's the member: {{vm.selected}}</p>
-                  <input type="text" ng-model="vm.shared">
-                  <h4>{{item}}</h4>
                   <member-convo item="item"></member-convo>
                   <member-info></member-info>
                 `,

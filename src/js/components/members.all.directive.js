@@ -23,7 +23,7 @@
                           username="member.username"
                           first="member.names.firstName"
                           last="member.names.lastName"
-                          set="vm.setSelected()">
+                          set="vm.setSelected(id)">
                         </member-icon>
                       </div>
                       <button class="btn btn-default" ng-click="vm.iterate()">Next 10</button>
@@ -41,16 +41,14 @@
   function membersCtrl($scope, memberService){
     var vm = this;
 
-    vm.selected = {};
-
-    vm.shared = "Testing Testing!";
-
-    vm.setSelected = function(){
-      console.log("Set Selected Running!");
-      // memberService.getMember(id).then(function(data){
-      //   console.log(data);
-      //   vm.selected = data;
-      // })
+    vm.setSelected = function(id){
+      console.log(id);
+      if ( id ){
+        console.log("Set Selected Running!");
+        memberService.getMember(id).then(function(data){
+          vm.selected = data;
+        })
+      }
     };
 
     var iterator = 0;
