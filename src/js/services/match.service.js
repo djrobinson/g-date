@@ -5,17 +5,17 @@
         .module('datingApp')
         .factory('matchService', matchService);
 
-    matchService.$inject = ['$http', 'logger'];
+    matchService.$inject = ['$http', '$log'];
 
-    function matchService($http, logger) {
+    function matchService($http, $log) {
         return {
             getMatches: getMatches,
             createMatch: createMatch,
             deleteMatch: deleteMatch
         };
 
-        function getMatches() {
-            return $http.get('/members/:member_id/matches')
+        function getMatches(member_id) {
+            return $http.get('https://galvanize-student-apis.herokuapp.com/gdating/members/'+member_id+'/matches')
                 .then(matchesComplete)
                 .catch(matchesComplete);
 
@@ -24,21 +24,22 @@
             }
 
             function matchesFailed(error) {
-                logger.error('XHR Failed for matches.' + error.data);
+                $log.error('XHR Failed for matches.' + error.data);
             }
         }
 
-        function createMatch() {
-            return $http.post('/members/:member_id/matches')
+        function createMatch(member_id, _match) {
+            return $http.post('https://galvanize-student-apis.herokuapp.com/gdating/members/'+member_id+'/matches', _match)
                 .then(createMatchComplete)
                 .catch(createMatchFailed);
 
             function createMatchComplete(response) {
+                console.log(response.data);
                 return response.data.results;
             }
 
             function createMatchFailed(error) {
-                logger.error('XHR Failed for matches.' + error.data);
+                $log.error('XHR Failed for matches.' + error.data);
             }
         }
 
@@ -52,7 +53,7 @@
             }
 
             function deleteMatchFailed(error) {
-                logger.error('XHR Failed for matches.' + error.data);
+                $log.error('XHR Failed for matches.' + error.data);
             }
         }
     }

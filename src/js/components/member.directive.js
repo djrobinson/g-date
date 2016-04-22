@@ -25,8 +25,6 @@
   function memberCtrl($scope, memberService, $localStorage){
     var vmChild = this;
     vmChild.localUser = $localStorage.user;
-
-    console.log("Member directive local: ", $localStorage.user);
     vmChild.test = "hello";
     memberService.getMembers()
       .then(function(data){

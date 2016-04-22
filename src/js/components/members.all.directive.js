@@ -6,6 +6,8 @@
     .directive('membersAll', membersAll)
     .controller('membersCtrl', membersCtrl)
 
+    membersCtrl.$inject = ['$scope','memberService', 'matchService', '$localStorage'];
+
   function membersAll(){
     var directive = {
       restrict: 'EA',
@@ -13,8 +15,7 @@
                     <div class="col-md-4 sidebar">
                       <h2>Members All</h2>
                       <a ui-sref="members.search">Search</a>
-                      <a ui-sref="members.member">Member</a>
-                      <input type="text" ng-model="vm.shared">
+                      <a class="btn btn-default" ng-click="vm.getMatches()">Matches</a>
                       <div ng-repeat="member in vm.members">
                         <member-icon
                           id="member._id"
@@ -38,7 +39,7 @@
     return directive;
   }
 
-  function membersCtrl($scope, memberService){
+  function membersCtrl($scope, memberService, matchService, $localStorage){
     var vm = this;
 
     vm.setSelected = function(id){
@@ -69,6 +70,17 @@
     vm.memberSearch = function(newMembers){
       vm.members = newMembers;
       return vm.members;
+    }
+
+    vm.getMatches = function(){
+      var member_id = $localStorage.user;
+      matchService.getMatches(member_id)
+        .then(function(data){
+          console.log(data);
+          vm.members = data;
+          return vm.members;
+        })
+
     }
   }
 })();

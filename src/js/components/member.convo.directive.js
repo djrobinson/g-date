@@ -18,7 +18,6 @@
       template: `
                   <h2>Member Convo</h2>
                   <div ng-repeat="message in vmConvo.convo">
-                      <p>{{message._sender}} {{message.content}}</p>
                   </div>
                   <input type="text" ng-model="vmConvo.convoText" />
                   <button class="btn btn-default" ng-click="vmConvo.getConvo()">Get Convo</button>
@@ -32,7 +31,6 @@
 
   function convoCtrl(conversationService, $scope){
     var vmConvo = this;
-    console.log($scope.sender+"  lajsdfklajsdf "+$scope.recipient);
     vmConvo.getConvo = function(){
       conversationService.getConversation($scope.sender, $scope.recipient)
         .then(function(data){
