@@ -153,17 +153,19 @@
             postObj.address.geo.lat = position.coords.latitude;
             console.log("Latitude: " + position.coords.latitude +
             "Longitude: " + position.coords.longitude);
+            authService.register(postObj)
+                .then(function(res){
+                    console.log(res.data.data.address.geo);
+                    $localStorage.token = res.data.token;
+                    $localStorage.user = res.data.data._id;
+                    $localStorage.geo = res.data.data.address.geo;
+                    window.location = "/#/members"
+                  })
+            }
         }
 
 
-        authService.register(postObj)
-          .then(function(res){
-              console.log(res);
-              $localStorage.token = res.data.token;
-              $localStorage.user = res.data.data._id;
-              window.location = "/#/members"
-            })
-      }
+
 
       vm.logout = function(){
       authService.logout(function () {

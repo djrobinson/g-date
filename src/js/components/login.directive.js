@@ -49,7 +49,7 @@
       .then(function(res){
         $localStorage.token = res.data.token;
         $localStorage.user = res.data.user._id;
-        // $localStorage.geo = res.data.address.geo;
+        $localStorage.geo = res.data.user.address.geo;
         window.location = "/#/members"
       })
     }
