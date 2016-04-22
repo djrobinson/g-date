@@ -16,7 +16,7 @@
             updateMember: updateMember
         };
 
-        var urlBase = 'https://galvanize-student-apis.herokuapp.com/gdating/';
+        var urlBase = 'c';
 
         function getMembers(iterator) {
             var offset = iterator * 10;
@@ -48,8 +48,8 @@
             }
         }
 
-        function deleteMember() {
-            return $http.delete('/members/:member_id')
+        function deleteMember(member_id) {
+            return $http.delete('https://galvanize-student-apis.herokuapp.com/gdating/members/'+member_id)
                 .then(membersComplete)
                 .catch(membersComplete);
 
@@ -77,8 +77,8 @@
             }
         }
 
-        function updateMember() {
-            return $http.put('/members/:member_id')
+        function updateMember(member_id) {
+            return $http.put('https://galvanize-student-apis.herokuapp.com/gdating/members/'+member_id)
                 .then(membersComplete)
                 .catch(membersComplete);
 
