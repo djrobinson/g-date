@@ -25,7 +25,6 @@
                 .catch(membersComplete);
 
             function membersComplete(response) {
-                console.log(response);
                 return response.data.data;
             }
 
@@ -49,12 +48,13 @@
         }
 
         function deleteMember(member_id) {
+            console.log("delete ", member_id);
             return $http.delete('https://galvanize-student-apis.herokuapp.com/gdating/members/'+member_id)
                 .then(membersComplete)
                 .catch(membersComplete);
 
             function membersComplete(response) {
-                return response.data.results;
+                return response.data;
             }
 
             function membersFailed(error) {
@@ -73,21 +73,23 @@
             }
 
             function membersFailed(error) {
-                $log.error('XHR Failed for members.' + error.data);
+
+                $log.error('XHR Failed for members.' + error);
             }
         }
 
-        function updateMember(member_id) {
-            return $http.put('https://galvanize-student-apis.herokuapp.com/gdating/members/'+member_id)
+        function updateMember(member_id, body) {
+            return $http.put('https://galvanize-student-apis.herokuapp.com/gdating/members/'+member_id, body)
                 .then(membersComplete)
                 .catch(membersComplete);
 
             function membersComplete(response) {
-                return response.data.results;
+                return response.data;
             }
 
             function membersFailed(error) {
-                $log.error('XHR Failed for members.' + error.data);
+                console.log(error);
+                $log.error('XHR Failed for members.' + error);
             }
         }
     }

@@ -11,27 +11,80 @@
   function register(){
     var directive = {
       restrict: 'EA',
-      template: `<h2>Register</h2>
-                 <form ng-submit="vm.register()">
-                   <h4>Username</h4>
-                   <input type="text" ng-model="user.username"><br>
-                   <h4>Slug</h4>
-                   <input type="text" ng-model="user.slug"><br>
-                   <h4>First Name</h4>
-                   <input type="text" ng-model="user.firstName"><br>
-                   <h4>Last Name</h4>
-                   <input type="text" ng-model="user.lastName"><br>
-                   <h4>Email</h4>
-                   <input type="text" ng-model="user.email"><br>
-                   <h4>Password</h4>
-                   <input type="password" ng-model="user.password"><br>
-                   <h4>Date of Birth</h4>
-                   <input type="date" ng-model="user.dob"><br>
-                   <h4>Zip Code</h4>
-                   <input type="text" ng-model="user.zipcode"><br><br>
-                   <input type="submit" class="btn btn-default" />
-                 </form>
-                 <button class="btn btn-default" ng-click="vm.logout()">Logout</button>
+      template: ` <div class="row">
+                    <div class="col-md-8 col-md-offset-2 jumbotron">
+                     <h1>Register</h1><br>
+                     <form class="input-group col-md-12" ng-submit="vm.register()">
+                      <fieldset>
+                        <div class="form-group">
+                          <div class="col-md-2">
+                           <h4>Username</h4>
+                          </div>
+                          <div class="input-group col-md-9">
+                            <input type="text" ng-model="user.username" class="form-control col-md-10" placeholder="Username">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-2">
+                           <h4>Password</h4>
+                          </div>
+                          <div class="input-group col-md-9">
+                            <input type="password" ng-model="user.password" class="form-control col-md-10" placeholder="Password">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-2">
+                           <h4>Slug</h4>
+                          </div>
+                          <div class="input-group col-md-9">
+                            <input type="text" ng-model="user.slug" class="form-control col-md-10" placeholder="Slug">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-2">
+                           <h4>First Name</h4>
+                          </div>
+                          <div class="input-group col-md-9">
+                            <input type="text" ng-model="user.firstName" class="form-control col-md-10" placeholder="First Name">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-2">
+                           <h4>Last Name</h4>
+                          </div>
+                          <div class="input-group col-md-9">
+                            <input type="text" ng-model="user.lastName" class="form-control col-md-10" placeholder="Last Name">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-2">
+                           <h4>Email</h4>
+                          </div>
+                          <div class="input-group col-md-9">
+                            <input type="text" ng-model="user.email" class="form-control col-md-10" placeholder="Email">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-2">
+                           <h4>Date of Birth</h4>
+                          </div>
+                          <div class="input-group col-md-9">
+                            <input type="date" ng-model="user.dob" class="form-control col-md-10">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-md-2">
+                           <h4>Zip Code</h4>
+                          </div>
+                          <div class="input-group col-md-9">
+                            <input type="text" ng-model="user.zipcode" class="form-control col-md-10">
+                          </div>
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-lg" value="Register" />
+                      </fieldset>
+                     </form>
+                    </div>
+                  </div>
                 `,
       controller: 'registerCtrl',
       controllerAs: 'vm'

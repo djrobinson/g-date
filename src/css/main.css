@@ -20,7 +20,6 @@ profile {
 
 .sidebar {
   position: fixed;
-  background: gray;
   height: 95%;
   overflow: scroll;
 }
@@ -29,4 +28,8 @@ profile {
   position: absolute;
   right: 25px;
   top: 25px ;
+}
+
+.panel img {
+  margin: 10px;
 }

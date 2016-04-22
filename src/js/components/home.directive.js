@@ -8,7 +8,11 @@
   function home(){
     var directive = {
       restrict: 'EA',
-      template: '<h2>Home</h2>'
+      template: `
+                  <div class="jumbotron">
+                    <h1>Home</h2>
+                  </div>
+                `
     }
     return directive;
   }

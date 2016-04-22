@@ -12,7 +12,7 @@
     var directive = {
       restrict: 'EA',
       scope: true,
-      template: ` <p> {{vmChild.localUser}} {{vm.selected._id}} </p>
+      template: `
                   <member-info></member-info>
                   <member-convo sender="vmChild.localUser" recipient="vm.selected._id"></member-convo>
                 `,

@@ -14,8 +14,13 @@
       template: `
                     <div class="col-md-4 sidebar">
                       <h2>Members All</h2>
-                      <a ui-sref="members.search">Search</a>
+                      <button ng-show="vm.iterator" class="btn btn-default" ng-click="vm.iterate()">Last 10</button>
+                      <a class="btn btn-default" ui-sref="members.search">Search</a>
+                      <a class="btn btn-default" ng-click="vm.reset()">Reset</a>
                       <a class="btn btn-default" ng-click="vm.getMatches()">Matches</a>
+                      <button class="btn btn-default" ng-click="vm.iterate()">Next 10</button>
+                      <br>
+                      <br>
                       <div ng-repeat="member in vm.members">
                         <member-icon
                           id="member._id"
@@ -27,7 +32,6 @@
                           set="vm.setSelected(id)">
                         </member-icon>
                       </div>
-                      <button class="btn btn-default" ng-click="vm.iterate()">Next 10</button>
                     </div>
                     <div class="col-md-8 main col-md-offset-4" ui-view>
 
@@ -51,20 +55,25 @@
       }
     };
 
-    var iterator = 0;
+    vm.iterator = 0;
     vm.iterate = function(){
-      iterator++;
-      getPage();
+      vm.iterator++;
+      vm.getPage();
     }
     vm.test = "hello";
-    function getPage(){
-      memberService.getMembers(iterator)
+    vm.getPage = function(){
+      memberService.getMembers(vm.iterator)
         .then(function(data){
-          vm.members = data.data;
+          vm.members = data;
           return vm.members;
         });
       }
-    getPage();
+    vm.getPage();
+
+    vm.reset = function(){
+      vm.iterator = 0;
+      vm.getPage();
+    }
 
     vm.testing = "bliggity blah";
     vm.memberSearch = function(newMembers){
@@ -80,7 +89,6 @@
           data.forEach(function(mem){
             memberService.getMember(mem._id)
               .then(function(info){
-                console.log(info);
                 retVal.push(info);
 
               })

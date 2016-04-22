@@ -20,12 +20,12 @@ function config($stateProvider, $urlRouterProvider, $httpProvider) {
 
         .state('register', {
             url: '/register',
-            template: '<register class="col-md-6 col-md-offset-3 text-center"></register>'
+            template: '<register></register>'
         })
 
         .state('login', {
             url: '/login',
-            template: '<login class="col-md-6 col-md-offset-3 text-center"></login>'
+            template: '<login></login>'
         })
 
         .state('members', {
@@ -45,13 +45,12 @@ function config($stateProvider, $urlRouterProvider, $httpProvider) {
 
         .state('profile', {
             url: '/profile',
-            template: '<profile class="col-md-8 col-md-offset-2 text-center"></profile>'
+            template: '<profile></profile>'
         })
 }
 
 function run($rootScope, $state, $localStorage){
     $rootScope.$on( "$stateChangeStart", function(event, toState) {
-        console.log("User in Local Storage ", $localStorage.user);
       if ( !$localStorage.token ) {
         $rootScope.showLogout = false;
         if ( toState.name == "members" || toState.name == "profile") {
