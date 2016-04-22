@@ -20,7 +20,8 @@
                 .catch(matchesComplete);
 
             function matchesComplete(response) {
-                return response.data.results;
+                console.log(response.data);
+                return response.data.data;
             }
 
             function matchesFailed(error) {

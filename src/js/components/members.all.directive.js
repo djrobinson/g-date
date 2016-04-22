@@ -60,7 +60,7 @@
     function getPage(){
       memberService.getMembers(iterator)
         .then(function(data){
-          vm.members = data;
+          vm.members = data.data;
           return vm.members;
         });
       }
@@ -74,11 +74,20 @@
 
     vm.getMatches = function(){
       var member_id = $localStorage.user;
+      var retVal = [];
       matchService.getMatches(member_id)
         .then(function(data){
-          console.log(data);
-          vm.members = data;
+          data.forEach(function(mem){
+            memberService.getMember(mem._id)
+              .then(function(info){
+                console.log(info);
+                retVal.push(info);
+
+              })
+          })
+          vm.members = retVal;
           return vm.members;
+
         })
 
     }

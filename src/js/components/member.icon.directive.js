@@ -38,7 +38,6 @@
 
   function memberIconCtrl($scope){
     var vmIcon = this;
-    console.log($scope.set());
     vmIcon.run = function(){
       $scope.set({id: $scope.id});
     }
