@@ -42,13 +42,14 @@
             }
         }
 
-        function getConversation() {
-            return $http.get('/members/:member_id/conversations/:recipient_id')
+        function getConversation(sender, recipient) {
+            return $http.get('https://galvanize-student-apis.herokuapp.com/gdating/members/'+sender+'/conversations/'+recipient)
                 .then(getConversationComplete)
                 .catch(getConversationFailed);
 
             function getConversationComplete(response){
-                return response.data.results;
+                console.log(response);
+                return response.data;
             }
 
             function getConversationFailed(error){

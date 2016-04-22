@@ -34,7 +34,7 @@
       console.log($scope.login);
       authService.login($scope.login)
       .then(function(res){
-        console.log(res);
+        console.log(res.data.user._id);
         $localStorage.token = res.data.token;
         $localStorage.user = res.data.user._id;
         window.location = "/#/members"

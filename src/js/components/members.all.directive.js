@@ -42,26 +42,23 @@
     var vm = this;
 
     vm.setSelected = function(id){
-      console.log(id);
       if ( id ){
-        console.log("Set Selected Running!");
         memberService.getMember(id).then(function(data){
           vm.selected = data;
         })
+
       }
     };
 
     var iterator = 0;
     vm.iterate = function(){
       iterator++;
-      console.log(iterator);
       getPage();
     }
     vm.test = "hello";
     function getPage(){
       memberService.getMembers(iterator)
         .then(function(data){
-          console.log(data);
           vm.members = data;
           return vm.members;
         });

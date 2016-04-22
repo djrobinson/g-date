@@ -51,6 +51,7 @@ function config($stateProvider, $urlRouterProvider, $httpProvider) {
 
 function run($rootScope, $state, $localStorage){
     $rootScope.$on( "$stateChangeStart", function(event, toState) {
+        console.log("User in Local Storage ", $localStorage.user);
       if ( !$localStorage.token ) {
         $rootScope.showLogout = false;
         if ( toState.name == "members" || toState.name == "profile") {
