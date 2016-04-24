@@ -11,7 +11,7 @@
   function login(){
     var directive = {
       restrict: 'EA',
-      templateUrl: 'login.html',
+      templateUrl: '/js/components/register.component/login.html',
       controller: 'loginCtrl',
       controllerAs: 'vm'
     }
