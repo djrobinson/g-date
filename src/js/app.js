@@ -40,7 +40,7 @@ function config($stateProvider, $urlRouterProvider, $httpProvider) {
         })
 
         .state('members.member', {
-            url: '/member/:member_id',
+            url: '/member/:slug',
             template: '<member></member>'
         })
 
