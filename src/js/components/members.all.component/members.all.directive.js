@@ -11,32 +11,7 @@
   function membersAll(){
     var directive = {
       restrict: 'EA',
-      template: `
-                    <div class="col-md-4 sidebar">
-                      <h2>Members All</h2>
-                      <button ng-show="vm.iterator" class="btn btn-default" ng-click="vm.iterate()">Last 10</button>
-                      <a class="btn btn-default" ui-sref="members.search">Search</a>
-                      <a class="btn btn-default" ng-click="vm.reset()">Reset</a>
-                      <a class="btn btn-default" ng-click="vm.getMatches()">Matches</a>
-                      <button class="btn btn-default" ng-click="vm.iterate()">Next 10</button>
-                      <br>
-                      <br>
-                      <div ng-repeat="member in vm.members">
-                        <member-icon
-                          id="member._id"
-                          slug="member.slug"
-                          avatar="member.avatar"
-                          username="member.username"
-                          first="member.names.firstName"
-                          last="member.names.lastName"
-                          set="vm.setSelected(id)">
-                        </member-icon>
-                      </div>
-                    </div>
-                    <div class="col-md-8 main col-md-offset-4" ui-view>
-
-                    </div>
-                `,
+      templateUrl: 'js/components/members.all.component/members.all.html',
       controller: 'membersCtrl',
       controllerAs: 'vm'
     }
@@ -67,18 +42,21 @@
       }
     }
 
-
-
     vm.setSelected = function(id){
 
       if ( id ){
-
         memberService.getMember(id).then(function(data){
+          var loggedInUser = $localStorage.user;
           var geo1 = $localStorage.geo;
           vm.selected = data;
           var geo2 = vm.selected.address.geo;
           var apart = distance(geo1.lng, geo1.lat, geo2.lng, geo2.lat);
           vm.selected.distance = apart;
+          vm.selected.matched = vm.selected._matches.some(function(user){
+            if (user === loggedInUser){
+              return true;
+            }
+          })
         })
       }
     };
@@ -123,7 +101,6 @@
           vm.members = retVal;
           return vm.members;
         })
-
     }
   }
 })();

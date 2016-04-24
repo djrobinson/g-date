@@ -1,0 +1,37 @@
+<div ng-show="vm.selected" class="row">
+  <br>
+  <br>
+  <br>
+
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2 class="panel-title">Member Info</h2>
+    </div>
+    <div class="panel-body">
+      <div class="col-md-3">
+        <img src="{{vm.selected.avatar}}" alt="avatar" />
+        <br>
+        <br>
+        <div ng-if="!vm.selected.matched">
+          <button ng-click="vmInfo.createMatch(vm.selected._id)" class="btn btn-primary">Match w/ this person</button>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <h1>{{vm.selected.username}}</h1>
+        <h3>{{vm.selected.names.firstName}} {{vm.selected.names.lastName}}</h3>
+        <div ng-if="vm.selected.matched" class=" alert alert-dismissable alert-success text-center">
+          <h4 class="text-center">It's a Match!</h4>
+          <h4>Location: {{vm.selected.address.city}},  Zipcode: {{vm.selected.address.zipcode}}</h4>
+          <h4>Phone: {{vm.selected.phone}}</h4>
+          <h4>Email: {{vm.selected.email}}</h4>
+        </div>
+
+        </div>
+        <h4>{{vm.selected.distance | number:0}} miles away from you!</h4>
+        <p>{{vm.selected.description}}</p>
+
+
+      </div>
+    </div>
+  </div>
+</div>

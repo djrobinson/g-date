@@ -51,6 +51,7 @@
                 firstName: $scope.user.firstName,
                 lastName: $scope.user.lastName
               },
+              description: $scope.user.description,
               avatar: $scope.user.avatar,
               email: $scope.user.email,
               password: $scope.user.password,
