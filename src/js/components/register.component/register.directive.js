@@ -28,7 +28,22 @@
       vm.register = function(){
 
 
-
+        var gendersArr = [];
+        gendersArr.push($scope.genders.male);
+        gendersArr.push($scope.genders.female);
+        gendersArr.push($scope.genders.decline);
+        console.log(gendersArr);
+        var inputGenders = gendersArr.reduce(function(prev, val){
+          console.log(prev);
+          if (val){
+             prev.push(val);
+             console.log(prev);
+             return prev;
+          } else {
+            return prev;
+          }
+        },[]);
+        console.log(inputGenders);
 
         postObj = {
               username: $scope.user.username,
@@ -53,15 +68,13 @@
               },
               website: null,
               company: {
-                bs: $scope.user.company,
+                bs: $scope.user.company[0],
                 catchPhrase: null,
                 name: null
               },
-              slug: $scope.user.slug,
+              slug: $scope.user.username,
               gender: $scope.user.gender,
-              interestedIn: [
-                $scope.user.genders
-              ]
+              interestedIn: [0]
             }
 
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -73,7 +86,7 @@
             "Longitude: " + position.coords.longitude);
             authService.register(postObj)
                 .then(function(res){
-                    console.log(res.data.data.address.geo);
+                    console.log(res.data.data);
                     $localStorage.token = res.data.token;
                     $localStorage.user = res.data.data._id;
                     $localStorage.geo = res.data.data.address.geo;

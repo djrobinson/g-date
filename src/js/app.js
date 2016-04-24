@@ -2,7 +2,8 @@
 angular
     .module('datingApp', [
         'ui.router',
-        'ngStorage'
+        'ngStorage',
+        'ui.bootstrap'
         ])
     .config(config)
     .run(run)

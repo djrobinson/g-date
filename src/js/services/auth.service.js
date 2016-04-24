@@ -27,6 +27,8 @@
             }
 
             function registerFailed(error) {
+                console.log("Register FaileD!");
+                console.log(error);
                 $log.error('XHR Failed for register.' + error);
                 return error;
             }

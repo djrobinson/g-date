@@ -21,14 +21,6 @@
     </div>
     <div class="form-group">
       <div class="col-md-2">
-       <h4>Slug</h4>
-      </div>
-      <div class="input-group col-md-9">
-        <input type="text" ng-model="user.slug" class="form-control col-md-10" placeholder="Slug">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-2">
        <h4>First Name</h4>
       </div>
       <div class="input-group col-md-9">
@@ -80,23 +72,36 @@
        <h4>Occupation</h4>
       </div>
       <div class="input-group col-md-9">
-        <input type="text" ng-model="user.avatar" class="form-control col-md-10">
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-md-2">
-       <h4>Occupation</h4>
-      </div>
-      <div class="input-group col-md-9">
         <input type="text" ng-model="user.company.bs" class="form-control col-md-10">
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
       <div class="col-md-2">
-       <h4>Gender</h4>
+        <h4>Gender</h4>
       </div>
-      <div class="input-group col-md-9">
-        <input type="text" ng-model="user.avatar" class="form-control col-md-10">
+      <div class="col-md-9">
+        <select class="form-control" id="sel1" ng-model="user.gender">
+          <option value="1">Male</option>
+          <option value="2">Female</option>
+          <option value="3">Decline to Answer</option>
+        </select>
+
+      </div>
+    </div>
+    <div class="form-group row" ng-model="user.genders">
+      <div class="col-md-2">
+        <h4>Interested In:</h4>
+      </div>
+      <div class="col-md-9">
+        <div class="checkbox">
+          <label><input type="checkbox" ng-model="genders.male"  value="male" ng-true-value="'males'">Males</label>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" ng-model="genders.female" value="female" ng-true-value="'females'">Females</label>
+        </div>
+        <div class="checkbox disabled">
+          <label><input type="checkbox" ng-model="genders.decline" value="decline to answer" ng-true-value="'whatever'">Whatever</label>
+        </div>
       </div>
     </div>
     <div class="form-group">
