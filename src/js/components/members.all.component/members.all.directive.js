@@ -6,7 +6,7 @@
     .directive('membersAll', membersAll)
     .controller('membersCtrl', membersCtrl)
 
-    membersCtrl.$inject = ['$scope','memberService', 'matchService', '$localStorage'];
+    membersCtrl.$inject = ['$scope','$localStorage','memberService', 'matchService', 'conversationService'];
 
   function membersAll(){
     var directive = {
@@ -18,7 +18,7 @@
     return directive;
   }
 
-  function membersCtrl($scope, memberService, matchService, $localStorage){
+  function membersCtrl($scope, $localStorage, memberService, matchService, conversationService){
     var vm = this;
 
 
@@ -31,7 +31,6 @@
               Math.sin(dLon/2) * Math.sin(dLon/2);
       var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
       var d = R * c; // Distance in km
-      console.log("Distance!! ", d);
       return d;
     }
 
@@ -43,12 +42,12 @@
     }
 
     vm.setSelected = function(id){
-
       if ( id ){
         memberService.getMember(id).then(function(data){
           var loggedInUser = $localStorage.user;
           var geo1 = $localStorage.geo;
           vm.selected = data;
+          getConvo(loggedInUser, vm.selected._id);
           var geo2 = vm.selected.address.geo;
           var apart = distance(geo1.lng, geo1.lat, geo2.lng, geo2.lat);
           vm.selected.distance = apart;
@@ -60,6 +59,18 @@
         })
       }
     };
+
+    function getConvo(sender, recipient){
+      conversationService.getConversation(sender, recipient)
+        .then(function(data){
+          if (data.data.length === 1){
+            vm.selected.convo = data.data[0].messages;
+            console.log(vm.selected.convo);
+            return vm.selected.convo;
+          }
+        });
+    }
+
 
     vm.iterator = 0;
     vm.iterate = function(){

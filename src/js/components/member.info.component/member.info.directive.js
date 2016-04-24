@@ -30,7 +30,7 @@
       }
       matchService.createMatch(member_id, _match)
         .then(function(data){
-          console.log(data);
+          console.log("Match Created");
         })
     }
 

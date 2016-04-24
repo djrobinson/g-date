@@ -6,7 +6,7 @@
     .directive('member', member)
     .controller('memberCtrl', memberCtrl)
 
-    memberCtrl.$inject = ['$scope', 'memberService', '$localStorage'];
+    memberCtrl.$inject = ['$scope', '$localStorage', 'memberService', 'conversationService'];
 
   function member(){
     var directive = {
@@ -16,7 +16,8 @@
                   <member-info></member-info>
                   <member-convo
                     sender="vmChild.localUser"
-                    recipient="vm.selected._id">
+                    recipient="vm.selected._id"
+                    convo="vm.selected.convo">
                   </member-convo>
                 `,
       controller: 'memberCtrl',
@@ -25,7 +26,7 @@
     return directive;
   }
 
-  function memberCtrl($scope, memberService, $localStorage){
+  function memberCtrl($scope, $localStorage, memberService, conversationService){
     var vmChild = this;
     vmChild.localUser = $localStorage.user;
 

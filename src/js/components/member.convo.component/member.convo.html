@@ -1,0 +1,16 @@
+<div ng-show="recipient">
+  <h2>Member Convo</h2>
+  <div class="row">
+    <h3>{{vm.selected.convo}}</h3>
+    <div ng-repeat="message in convo">
+      <div class="row">
+        <div ng-class="vmConvo.setClass(message._sender)">
+          <h4>{{message.content}}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+  <input type="text" ng-model="vmConvo.convoText" />
+  <button class="btn btn-default" ng-click="vmConvo.createConvo()">Create Convo</button>
+</div>
