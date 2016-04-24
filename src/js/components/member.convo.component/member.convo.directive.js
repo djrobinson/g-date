@@ -32,19 +32,17 @@
         return 'alert alert-dismissable alert-info';
       };
     }
-    // function getConvo(){
-    //   console.log($scope.sender, $scope.recipient);
-    //   conversationService.getConversation($scope.sender, $scope.recipient)
-    //     .then(function(data){
-    //       if (data){
-    //         vmConvo.convo = data.data[0].messages;
-    //         return vmConvo.convo;
-    //       }
-    //     });
-    // }
-    // if ($scope.sender && $scope.recipient){
-    //   getConvo();
-    // }
+
+    vmConvo.getConvo = function(){
+      console.log($scope.sender, $scope.recipient);
+      conversationService.getConversation($scope.sender, $scope.recipient)
+        .then(function(data){
+          if (data){
+            vmConvo.convoText = "";
+            $scope.convo = data.data[0].messages;
+          }
+        });
+    }
 
     vmConvo.createConvo = function(){
       var form = {
