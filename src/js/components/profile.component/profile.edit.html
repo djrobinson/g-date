@@ -1,0 +1,75 @@
+<div class="text-center">
+  <h2>Profile Edit</h2>
+  <form ng-submit="vmProf.updateProfile()">
+    <div class="row col-md-8 col-md-offset-2">
+      <h3>Username</h3>
+      <input type="text" class="form-control" ng-model="vmProf.member.username" />
+    </div>
+    <div class="row col-md-8 col-md-offset-2">
+      <h3>Avatar Url</h3>
+      <input type="text" class="form-control" ng-model="vmProf.member.avatar" />
+    </div>
+    <div class="row col-md-8 col-md-offset-2">
+      <h3>Email</h3>
+      <input type="text" class="form-control" ng-model="vmProf.member.email" />
+    </div>
+    <div class="row col-md-8 col-md-offset-2">
+      <h3>Phone Number</h3>
+      <input type="text" class="form-control" ng-model="vmProf.member.phone" />
+    </div>
+    <div class="row col-md-8 col-md-offset-2">
+      <h3>First Name</h3>
+      <input type="text" class="form-control" ng-model="vmProf.member.names.firstName" />
+    </div>
+    <div class="row col-md-8 col-md-offset-2">
+      <h3>Last Name</h3>
+      <input type="text" class="form-control" ng-model="vmProf.member.names.lastName" />
+    </div>
+    <div class="row col-md-8 col-md-offset-2">
+      <h3>Zip Code</h3>
+      <input type="text" class="form-control" ng-model="vmProf.member.address.zipcode" />
+    </div>
+    <div class="row col-md-8 col-md-offset-2">
+      <h3>City</h3>
+      <input type="text" class="form-control" ng-model="vmProf.member.address.city" />
+    </div>
+    <div class="row col-md-8 col-md-offset-2">
+      <h3>Company</h3>
+      <input type="text" class="form-control" ng-model="vmProf.member.company.bs" />
+    </div>
+    <div class="form-group col-md-8 col-md-offset-2">
+      <h3>Description</h3>
+      <textarea class="form-control" rows="5" ng-model="vmProf.member.description"></textarea>
+    </div>
+    <div class="form-group row col-md-8 col-md-offset-2">
+      <div>
+        <h3>Gender</h3>
+        <select class="form-control" id="sel1" ng-model="vmProf.member.gender">
+          <option value="1">Male</option>
+          <option value="2">Female</option>
+          <option value="3">Decline to Answer</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row col-md-8 col-md-offset-2" ng-model="vmProf.member.genders">
+      <div class="col-md-9">
+        <h3>Interested in:</h3>
+        <div class="checkbox">
+          <label><input type="checkbox" ng-model="vmProf.members.genders.male"  value="male" ng-true-value="'males'">Males</label>
+        </div>
+        <div class="checkbox">
+          <label><input type="checkbox" ng-model="vmProf.members.genders.female" value="female" ng-true-value="'females'">Females</label>
+        </div>
+        <div class="checkbox disabled">
+          <label><input type="checkbox" ng-model="vmProf.members.genders.decline" value="decline to answer" ng-true-value="'whatever'">Whatever</label>
+        </div>
+      </div>
+    </div>
+    <div class="row col-md-12">
+      <br>
+      <input type="submit" class="btn btn-default">
+      <button ng-click="vmProf.deleteProfile()" class="btn btn-default">Delete Profile</button>
+    </div>
+  </form>
+
+</div>

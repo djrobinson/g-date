@@ -13,8 +13,8 @@
       restrict: 'EA',
       template: ` <h2>Profile</h2>
                   <div class="row">
-                    <profile-preview class="col-md-6"></profile-preview>
                     <profile-edit class="col-md-6"></profile-edit>
+                    <profile-preview class="col-md-6"></profile-preview>
                   </div>
 
                 `,
@@ -42,29 +42,29 @@
                 firstName: vmProf.member.names.firstName,
                 lastName: vmProf.member.names.lastName
               },
-              avatar: "djrblah",
+              avatar: vmProf.member.avatar,
               email: vmProf.member.email,
               password: "password",
               dob: "08/05/1989",
-              phone: "77777777",
+              phone: vmProf.member.phone,
               address: {
-                zipcode: "80211",
+                zipcode: vmProf.member.address.zipcode,
                 geo: {
                   lng: 0,
                   lat: 0
                 },
                 suite: "djrblah",
-                city: "djrblah",
+                city: vmProf.member.address.city,
                 street: "djrblah"
               },
               website: "djrblah",
               company: {
-                bs: "djrblah",
+                bs: vmProf.member.company.bs,
                 catchPhrase: "djrblah",
                 name: "djrblah"
               },
-              slug: vmProf.member.slug,
-              gender: 0,
+              slug: vmProf.member.username,
+              gender: vmProf.member.gender,
               interestedIn: [
                 0
               ]
@@ -72,6 +72,7 @@
       memberService.updateMember(member_id, postObj)
         .then(function(data){
           console.log(data);
+          window.location = "/#/members"
         });
       }
 

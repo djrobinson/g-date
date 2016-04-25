@@ -81,14 +81,14 @@
         function updateMember(member_id, body) {
             return $http.put('https://galvanize-student-apis.herokuapp.com/gdating/members/'+member_id, body)
                 .then(membersComplete)
-                .catch(membersComplete);
+                .catch(membersFailed);
 
             function membersComplete(response) {
                 return response.data;
             }
 
             function membersFailed(error) {
-                console.log(error);
+                console.log("Update Member Failed ", error);
                 $log.error('XHR Failed for members.' + error);
             }
         }
