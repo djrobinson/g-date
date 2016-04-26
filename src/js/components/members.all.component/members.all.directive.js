@@ -79,6 +79,7 @@
     }
     vm.test = "hello";
     vm.getPage = function(){
+      vm.filter = '';
       memberService.getMembers(vm.iterator)
         .then(function(data){
           vm.members = data;
@@ -86,6 +87,19 @@
         });
       }
     vm.getPage();
+
+    vm.getFilterable = function(filter, which){
+      memberService.getAllMembers()
+        .then(function(data){
+          vm.members = data;
+          if (which === 'filter'){
+            vm.filter = filter;
+          } else if (which === 'order'){
+            vm.order = filter;
+          }
+          return vm.members;
+        })
+    }
 
     vm.reset = function(){
       vm.iterator = 0;

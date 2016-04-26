@@ -22,29 +22,16 @@
       var vm = this;
 
       var postObj = {};
+      $scope.user = {};
+      $scope.user.interestedIn = [];
 
-
+      $scope.updateInterest = function(num){
+          $scope.user.interestedIn.push(num);
+          console.log($scope.user.interestedIn);
+        }
 
       vm.register = function(){
-
-
-        var gendersArr = [];
-        gendersArr.push($scope.genders.male);
-        gendersArr.push($scope.genders.female);
-        gendersArr.push($scope.genders.decline);
-        console.log(gendersArr);
-        var inputGenders = gendersArr.reduce(function(prev, val){
-          console.log(prev);
-          if (val){
-             prev.push(val);
-             console.log(prev);
-             return prev;
-          } else {
-            return prev;
-          }
-        },[]);
-        console.log(inputGenders);
-
+        console.log($scope.user.interestedIn);
         postObj = {
               username: $scope.user.username,
               names: {
@@ -75,7 +62,7 @@
               },
               slug: $scope.user.username,
               gender: $scope.user.gender,
-              interestedIn: [0]
+              interestedIn: $scope.user.interestedIn
             }
 
         navigator.geolocation.getCurrentPosition(showPosition);

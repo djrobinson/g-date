@@ -93,7 +93,7 @@
         <h4>Description</h4>
       </div>
       <div class="col-md-9">
-        <textarea ng-model="user.description">
+        <textarea class="form-control" ng-model="user.description">
 
         </textarea>
       </div>
@@ -102,15 +102,15 @@
       <div class="col-md-2">
         <h4>Interested In:</h4>
       </div>
-      <div class="col-md-9">
+      <div class="col-md-9" ng-model="user.interestedIn">
         <div class="checkbox">
-          <label><input type="checkbox" ng-model="genders.male"  value="male" ng-true-value="'males'">Males</label>
+          <label><input type="checkbox" ng-click="updateInterest(0)" checklist-model="user.interestedIn" checklist-value="0">Males</label>
         </div>
         <div class="checkbox">
-          <label><input type="checkbox" ng-model="genders.female" value="female" ng-true-value="'females'">Females</label>
+          <label><input type="checkbox" ng-click="updateInterest(1)" checklist-model="user.interestedIn" checklist-value="1">Females</label>
         </div>
         <div class="checkbox disabled">
-          <label><input type="checkbox" ng-model="genders.decline" value="decline to answer" ng-true-value="'whatever'">Whatever</label>
+          <label><input type="checkbox"  ng-click="updateInterest(2)" checklist-model="user.interestedIn" checklist-value="2">Whatever</label>
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@
     function memberService($http, $log) {
         return {
             getMembers: getMembers,
+            getAllMembers: getAllMembers,
             createMember: createMember,
             deleteMember: deleteMember,
             getMember: getMember,
@@ -21,6 +22,20 @@
         function getMembers(iterator) {
             var offset = iterator * 10;
             return $http.get( 'https://galvanize-student-apis.herokuapp.com/gdating/members?limit=10&offset=' + offset )
+                .then(membersComplete)
+                .catch(membersComplete);
+
+            function membersComplete(response) {
+                return response.data.data;
+            }
+
+            function membersFailed(error) {
+                $log.error('XHR Failed for members.' + error.data);
+            }
+        }
+
+        function getAllMembers(){
+            return $http.get( 'https://galvanize-student-apis.herokuapp.com/gdating/members')
                 .then(membersComplete)
                 .catch(membersComplete);
 

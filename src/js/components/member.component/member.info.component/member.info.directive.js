@@ -12,7 +12,7 @@
     var directive = {
       restrict: 'EA',
       scope: true,
-      templateUrl: '/js/components/member.info.component/member.info.html',
+      templateUrl: '/js/components/member.component/member.info.component/member.info.html',
       controller: 'infoCtrl',
       controllerAs: 'vmInfo'
     }

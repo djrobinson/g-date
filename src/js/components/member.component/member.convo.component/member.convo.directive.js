@@ -16,7 +16,7 @@
         recipient: '=',
         convo: '='
       },
-      templateUrl: 'js/components/member.convo.component/member.convo.html',
+      templateUrl: 'js/components/member.component/member.convo.component/member.convo.html',
       controller: 'convoCtrl',
       controllerAs: 'vmConvo'
     }
