@@ -26,6 +26,10 @@
       <input type="text" class="form-control" ng-model="vmProf.member.names.lastName" />
     </div>
     <div class="row col-md-8 col-md-offset-2">
+      <h3>Date of Birth</h3>
+      <input type="date" class="form-control" ng-model="vmProf.member.dob" value="vmProf.member.dob" />
+    </div>
+    <div class="row col-md-8 col-md-offset-2">
       <h3>Zip Code</h3>
       <input type="text" class="form-control" ng-model="vmProf.member.address.zipcode" />
     </div>
@@ -45,25 +49,26 @@
       <div>
         <h3>Gender</h3>
         <select class="form-control" id="sel1" ng-model="vmProf.member.gender">
-          <option value="1">Male</option>
-          <option value="2">Female</option>
-          <option value="3">Decline to Answer</option>
+          <option value="0" ng-selected="vmProf.member.gender === 0">Male</option>
+          <option value="1" ng-selected="vmProf.member.gender === 1">Female</option>
+          <option value="2" ng-selected="vmProf.member.gender === 2">Other</option>
+          <option value="3" ng-selected="vmProf.member.gender === 3">Decline to Answer</option>
         </select>
       </div>
     </div>
-    <div class="form-group row col-md-8 col-md-offset-2" ng-model="vmProf.member.genders">
+    <div class="form-group row col-md-8 col-md-offset-2">
       <div class="col-md-9">
         <h3>Interested in:</h3>
         <div class="checkbox">
-          <label><input type="checkbox" ng-model="vmProf.members.genders.male"  value="male" ng-true-value="'males'">Males</label>
+          <label><input type="checkbox" ng-click="vmProf.updateInterest(0)" checklist-model="vmProf.member.interestedIn" checklist-value="0" ng-checked="vmProf.member.interestedIn.indexOf(0) !== -1">Males</label>
         </div>
         <div class="checkbox">
-          <label><input type="checkbox" ng-model="vmProf.members.genders.female" value="female" ng-true-value="'females'">Females</label>
+          <label><input type="checkbox" ng-click="vmProf.updateInterest(1)" checklist-model="vmProf.member.interestedIn" checklist-value="1" ng-checked="vmProf.member.interestedIn.indexOf(1) !== -1">Females</label>
         </div>
         <div class="checkbox disabled">
-          <label><input type="checkbox" ng-model="vmProf.members.genders.decline" value="decline to answer" ng-true-value="'whatever'">Whatever</label>
+          <label><input type="checkbox" ng-click="vmProf.updateInterest(2)" checklist-model="vmProf.member.interestedIn" checklist-value="2" ng-checked="vmProf.member.interestedIn.indexOf(2) !== -1">Whatever</label>
         </div>
-      </div>
+
     </div>
     <div class="row col-md-12">
       <br>
