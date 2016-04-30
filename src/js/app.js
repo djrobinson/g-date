@@ -47,7 +47,29 @@ function config($stateProvider, $urlRouterProvider, $httpProvider) {
         .state('profile', {
             url: '/profile',
             template: '<profile></profile>'
-        })
+        });
+
+
+}
+
+function interceptor($q, $location, $localStorage){
+            $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
+        return {
+           'request': function (config) {
+               config.headers = config.headers || {};
+               if ($localStorage.token) {
+                   config.headers['x-access-token'] = $localStorage.token;
+               }
+               return config;
+           },
+           'responseError': function (response) {
+               if (response.status === 401 || response.status === 403) {
+                   $location.path('/login');
+               }
+               return $q.reject(response);
+           }
+       };
+      }]);
 }
 
 function run($rootScope, $state, $localStorage){
