@@ -66,4 +66,5 @@ function run($rootScope, $state, $localStorage){
         }
       }
     });
+    //Interceptor is on POST for members
 }
